@@ -79,7 +79,7 @@ public class MapLoader
             public boolean accept(File dir, String name) {
                 return name.equals(filename);
             }
-        });
+    });
         if (maps.length == 0)
             throw new RuntimeException("no maps in map directory");
         File map = maps[0];
