@@ -37,7 +37,7 @@ import java.util.List;
 public class NavigationalMap 
 {
     private List<List<PointF>> paths = new ArrayList<List<PointF>>();
-    
+    public PointF scale;
     /**
      * Returns the set of walls in this map.
      */

@@ -4,6 +4,8 @@ package lab3_201_13.ca.uwaterloo.ca.lab4_201_13;
         import android.support.v7.app.AppCompatActivity;
         import android.os.Bundle;
         import android.util.Log;
+        import android.view.ContextMenu;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.LinearLayout;
 
@@ -12,14 +14,15 @@ package lab3_201_13.ca.uwaterloo.ca.lab4_201_13;
 
 
 public class MainActivity extends AppCompatActivity {
+    MapView map;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        LinearLayout layout = (LinearLayout) findViewById(R.id.layout);
+        LinearLayout layout = (LinearLayout) findViewById(R.id.ll);
         layout.setOrientation(LinearLayout.VERTICAL);
-        MapView map = new MapView(getApplicationContext(),640, 600,25, 25);
+        map = new MapView(getApplicationContext(),640, 600,25, 25);
         registerForContextMenu(map);
         try {
             map.setMap(MapLoader.loadMap(getExternalFilesDir(null), "E2-3344.svg"));
@@ -35,4 +38,11 @@ public class MainActivity extends AppCompatActivity {
         g.getPath();
 
     }
+    @Override
+    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        map.onCreateContextMenu(menu, v, menuInfo); }
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        return super.onContextItemSelected(item) || map.onContextItemSelected(item); }
 }

@@ -99,6 +99,7 @@ public class MapLoader
 
         PointF fileMaxCoord = new PointF(Float.parseFloat(svg.getAttribute("width")),
                                          Float.parseFloat(svg.getAttribute("height")));
+        pedMap.scale.set(fileMaxCoord);
     
         float scaleX = 0.0f;
         float scaleY = 0.0f;
